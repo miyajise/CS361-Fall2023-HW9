@@ -1,6 +1,10 @@
 # Name: Sharyn Miyaji
 # Date: 11/20/2023
 # Course: CS361 Section 400
+# Assignment: 9
+# Description:  Microservice for my partner, James Hill.  This program tracks how much money a Poker Player has in a
+#               bank account.  The Poker Player can deposit or withdraw money from their account.
+
 
 
 import time
@@ -13,7 +17,7 @@ class PlayerAccount:
 
     def withdraw_money(self, name, amount):
         current_amount = self._playerlist[name]["Amount"]
-        if amount >= current_amount:
+        if amount <= current_amount:
             current_amount -= amount
             self._playerlist[name]["Amount"] = current_amount
         else:
@@ -47,11 +51,9 @@ while True:
 
         if action == "deposit":
             account.deposit_money(name, amount)
-            action_taken = "Money deposited."
             total_amount = account.get_amount(name)
         elif action == "retrieve":
             account.withdraw_money(name, amount)
-            action_taken = "Money withdrawn."
             total_amount = account.get_amount(name)
         time.sleep(2)
         output_file = open('bankcomms.txt', 'w')
